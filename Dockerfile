@@ -5,7 +5,6 @@ ARG pw
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install jupyter
-RUN pip3 install py4j
 
 ## INSTALL LIBRARIES & CREATE PAM USER
 RUN  pip install boto3 awscli pandas --upgrade \
