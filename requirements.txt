@@ -1,0 +1,7 @@
+numpy
+simplejson
+sklearn
+boto3
+awscli
+pandas
+joblib
