@@ -6,7 +6,8 @@ JupyterHub docker image with a baked Linux user, which can be passed during buil
 # Docker build
 AWS CLI configured during build time. Variables provided from a KeyVault.
 ```bash
-docker build -t <repo:tag> --build-arg user=<user> --build-arg pw=<pw> --build-arg key=<awskey> --build-arg secret=<awssecret> --build-arg region=<awsregion>  .```
+docker build -t <repo:tag> --build-arg user=<user> --build-arg pw=<pw> --build-arg key=<awskey> --build-arg secret=<awssecret> --build-arg region=<awsregion>  .
+```
 
 # Run application
 ```bash
