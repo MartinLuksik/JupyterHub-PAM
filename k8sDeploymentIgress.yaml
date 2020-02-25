@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jupyter
+  name: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter
+  template:
+    metadata:
+      labels:
+        app: jupyter
+      name: jupyter
+    spec:
+      containers:
+      - name: jupyter
+        image: martindocker22/nbapc:jupyterhubpam
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+      imagePullSecrets:
+      - name: docreg
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jupyter
+  namespace: default
+  labels:
+    app: jupyter
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: jupyter
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jupyter-ingress
+  namespace: default
+spec:
+  rules:
+  - host: jupyter.mldedicated.net
+    http:
+      paths:
+      - backend:
+          serviceName: jupyter
+          servicePort: 8000
